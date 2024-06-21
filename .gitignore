@@ -6,6 +6,7 @@
 *.config
 *.conf
 [Rr]obots.txt
+ads.txt
 
 # Ignore everything in user/
 user/*
