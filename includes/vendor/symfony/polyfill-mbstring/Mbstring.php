@@ -50,9 +50,12 @@ namespace Symfony\Polyfill\Mbstring;
  * - mb_substr_count         - Count the number of substring occurrences
  * - mb_ucfirst              - Make a string's first character uppercase
  * - mb_lcfirst              - Make a string's first character lowercase
+<<<<<<< HEAD
  * - mb_trim                 - Strip whitespace (or other characters) from the beginning and end of a string
  * - mb_ltrim                - Strip whitespace (or other characters) from the beginning of a string
  * - mb_rtrim                - Strip whitespace (or other characters) from the end of a string
+=======
+>>>>>>> 2ff2a727 (init 210624)
  *
  * Not implemented:
  * - mb_convert_kana         - Convert "kana" one from another ("zen-kaku", "han-kaku" and more)
@@ -86,6 +89,15 @@ final class Mbstring
     public static function mb_convert_encoding($s, $toEncoding, $fromEncoding = null)
     {
         if (\is_array($s)) {
+<<<<<<< HEAD
+=======
+            if (PHP_VERSION_ID < 70200) {
+                trigger_error('mb_convert_encoding() expects parameter 1 to be string, array given', \E_USER_WARNING);
+
+                return null;
+            }
+
+>>>>>>> 2ff2a727 (init 210624)
             $r = [];
             foreach ($s as $str) {
                 $r[] = self::mb_convert_encoding($str, $toEncoding, $fromEncoding);
@@ -424,6 +436,12 @@ final class Mbstring
 
     public static function mb_check_encoding($var = null, $encoding = null)
     {
+        if (\PHP_VERSION_ID < 70200 && \is_array($var)) {
+            trigger_error('mb_check_encoding() expects parameter 1 to be string, array given', \E_USER_WARNING);
+
+            return null;
+        }
+
         if (null === $encoding) {
             if (null === $var) {
                 return false;
@@ -971,6 +989,7 @@ final class Mbstring
         return $encoding;
     }
 
+<<<<<<< HEAD
     public static function mb_trim(string $string, ?string $characters = null, ?string $encoding = null): string
     {
         return self::mb_internal_trim('{^[%s]+|[%1$s]+$}Du', $string, $characters, $encoding, __FUNCTION__);
@@ -1029,17 +1048,27 @@ final class Mbstring
         return iconv('UTF-8', $encoding.'//IGNORE', $string);
     }
 
+=======
+>>>>>>> 2ff2a727 (init 210624)
     private static function assertEncoding(string $encoding, string $errorFormat): void
     {
         try {
             $validEncoding = @self::mb_check_encoding('', $encoding);
         } catch (\ValueError $e) {
+<<<<<<< HEAD
             throw new \ValueError(sprintf($errorFormat, $encoding));
+=======
+            throw new \ValueError(\sprintf($errorFormat, $encoding));
+>>>>>>> 2ff2a727 (init 210624)
         }
 
         // BC for PHP 7.3 and lower
         if (!$validEncoding) {
+<<<<<<< HEAD
             throw new \ValueError(sprintf($errorFormat, $encoding));
+=======
+            throw new \ValueError(\sprintf($errorFormat, $encoding));
+>>>>>>> 2ff2a727 (init 210624)
         }
     }
 }

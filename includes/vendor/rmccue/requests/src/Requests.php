@@ -148,7 +148,11 @@ class Requests {
 	 *
 	 * @var string
 	 */
+<<<<<<< HEAD
 	const VERSION = '2.0.15';
+=======
+	const VERSION = '2.0.11';
+>>>>>>> 2ff2a727 (init 210624)
 
 	/**
 	 * Selected transport name

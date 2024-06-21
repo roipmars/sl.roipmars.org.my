@@ -144,6 +144,7 @@ if (!function_exists('mb_lcfirst')) {
     function mb_lcfirst(string $string, ?string $encoding = null): string { return p\Mbstring::mb_lcfirst($string, $encoding); }
 }
 
+<<<<<<< HEAD
 if (!function_exists('mb_trim')) {
     function mb_trim(string $string, ?string $characters = null, ?string $encoding = null): string { return p\Mbstring::mb_trim($string, $characters, $encoding); }
 }
@@ -157,6 +158,8 @@ if (!function_exists('mb_rtrim')) {
 }
 
 
+=======
+>>>>>>> 2ff2a727 (init 210624)
 if (extension_loaded('mbstring')) {
     return;
 }
